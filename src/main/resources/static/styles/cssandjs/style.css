@@ -1,0 +1,56 @@
+.users__add {
+    margin-bottom: 15px;
+}
+
+.users__cell {
+    padding: 10px;
+}
+
+.users__header {
+    background-color: #5c5c5c;
+    text-align: left;
+}
+
+.users__header-cell {
+    color: white;
+}
+
+.button {
+    font-weight: bold;
+    padding: 5px 15px;
+    border: none;
+    outline: none;
+    flex: auto;
+    display: flex;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px gray;
+}
+
+.button:hover {
+    filter: brightness(140%)
+}
+
+.button:active {
+   filter: brightness(70%);
+}
+
+.button--delete {
+    color: white;
+    background-color: #f30505;
+}
+
+.button--edit {
+    background-color:#2E8B57;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+}
+
+.button--new {
+    background-color: #FFA07A;
+    text-decoration: none;
+    width: fit-content;
+}
+

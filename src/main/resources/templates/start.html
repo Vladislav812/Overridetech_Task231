@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>StartPage</title>
+    <link th:href="@{/styles/cssandjs/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="users">
+    <button class="button button--new users__add">
+        <a href="/newuser" class="link">Add new User</a>
+    </button>
+
+    <table class="users__table">
+        <thead class="users__header">
+        <tr>
+            <th class="users__header-cell users__cell">Name</th>
+            <th class="users__header-cell users__cell">Age</th>
+            <th class="users__header-cell users__cell">Email</th>
+            <th class="users__header-cell users__cell">Update</th>
+            <th class="users__header-cell users__cell">Remove</th>
+        </tr>
+        </thead>
+        <tbody th:each="user : ${users}">
+        <tr>
+            <td class="users__cell"th:text="${user.getName()}"></td>
+            <td class="users__cell" th:text="${user.getAge()}"></td>
+            <td class="users__cell" th:text="${user.getEmail()}"></td>
+            <td class="users__cell">
+                <button class="button button--edit">
+                    <a class="link"
+                       th:href="@{/edit/{id}(id=${user.getId()})}">Edit</a>
+                </button>
+            </td>
+            <td class="users__cell ">
+                <form th:method="DELETE" th:action="@{/delete/{id}(id=${user.getId()})}">
+                    <button class="button button--delete">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

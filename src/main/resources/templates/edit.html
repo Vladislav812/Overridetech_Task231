@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>edit</title>
+</head>
+<body>
+<form th:method="PATCH" th:action="@{/edit/{id}(id=${user.getId()})}" th:object="${user}">
+    <label for="name">Update name</label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br/>
+    <label for="age">Update age</label>
+    <input type="number" th:field="*{age}" id="age"/>
+    <br/>
+    <label for="email">Update email</label>
+    <input type="text" th:field="*{email}" id="email"/>
+    <br/>
+    <input type="submit" value="Update"/>
+</form>
+</body>
+</html>

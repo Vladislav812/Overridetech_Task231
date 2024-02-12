@@ -5,12 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import overridetech.task231.model.User;
+import overridetech.task231.service.UserService;
 import overridetech.task231.service.UserServiceImpl;
 
 @Controller
 public class UserController {
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
 
     @PostMapping("/newuser")
     public String addNewUser(@ModelAttribute("user") User user) {

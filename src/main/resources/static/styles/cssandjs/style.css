@@ -54,3 +54,6 @@
     width: fit-content;
 }
 
+.validationError {
+    color: red;
+}

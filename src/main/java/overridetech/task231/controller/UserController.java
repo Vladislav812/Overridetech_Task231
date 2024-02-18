@@ -2,7 +2,6 @@ package overridetech.task231.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -37,7 +36,7 @@ public class UserController {
         }
         userService.saveUser(user);
 
-        Role defaultRole = roleRepository.findRoleByTitle("ROLE_admin");
+        Role defaultRole = roleRepository.findRoleByTitle("ROLE_user");
         Set<Role> roles = new HashSet<>();
         roles.add(defaultRole);
 
@@ -91,7 +90,6 @@ public class UserController {
         if (errors.hasErrors()) {
             return "edit";
         }
-        
 
         Set<Role> roles = userRepository.findById(id).get().getCurrentRoles();
         user.setCurrentRoles(roles);

@@ -10,22 +10,22 @@
     <label for="name">Enter name</label>
     <input type="text" th:field="*{name}" id="name"/>
     <span class="validationError"
-        th:if="@{fields.hasErrors('name')}"
-        th:errors="*{name}">nameFieldError</span>
+          th:if="@{fields.hasErrors('name')}"
+          th:errors="*{name}">nameFieldError</span>
     <br/>
 
     <label for="age">Enter age</label>
     <input type="number" th:field="*{age}" id="age"/>
     <span class="validationError"
-        th:if="@{fields.hasErrors('age')}"
-        th:errors="*{age}">ageFieldError</span>
+          th:if="@{fields.hasErrors('age')}"
+          th:errors="*{age}">ageFieldError</span>
     <br/>
 
     <label for="email">Enter email</label>
     <input type="text" th:field="*{email}" id="email"/>
     <span class="validationError"
-        th:if="@{fields.hasErrors('email')}"
-        th:errors="*{email}">emailFieldError</span>
+          th:if="@{fields.hasErrors('email')}"
+          th:errors="*{email}">emailFieldError</span>
     <br/>
 
     <label for="password">Enter password</label>
@@ -35,14 +35,33 @@
           th:errors="*{password}">passFieldError</span>
     <br/>
 
-<!--    <label for="role">Enter role</label>-->
-<!--    <input type="text" th:name = "role" id="role"/>-->
+    <label for="roles">Choose roles</label>
+    <input type="checkbox" th:field="*{currentRoles}" id="roles"
+           th:each="role:${rolesSet}"
+           th:text="${role.getTitle()}"
+           th:value="${role.getId()}"/>
 
+    <span class="validationError"
+          th:if="@{fields.hasErrors('currentRoles')}"
+          th:errors="*{currentRoles}">rolesError</span>
 
+    <!--    <label for="roleslist">Choose roles</label>-->
+    <!--    <input type="checkbox" name="roleslist" id="roleslist"-->
+    <!--           th:each="role:${roleslist}"-->
+    <!--           th:text="${role.getTitle()}"-->
+    <!--           th:value="${role.getId()}"-->
+    <!--    />-->
+    <!--    <span class="validationError"-->
+    <!--          th:if="@{fields.hasErrors('currentRoles')}"-->
+    <!--          th:errors="*{currentRoles}">rolesError</span>-->
+
+    <br/>
     <input type="submit" value="create"/>
 </form>
 <form th:method="POST" th:action="@{/logout}">
     <input type="submit" value="LOGOUT"/>
 </form>
+
+
 </body>
 </html>

@@ -13,6 +13,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PositiveOrZero;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -21,8 +22,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")
-//@DynamicUpdate
-//@DynamicInsert
+    //@DynamicUpdate
+    //@DynamicInsert
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,6 +57,15 @@ public class User implements UserDetails {
             }
         }
         return sb.toString();
+    }
+
+    public Set<Long> getRolesId() {
+        Set<Long> set = new HashSet<>();
+        Iterator<Role> iterator = currentRoles.iterator();
+        while (iterator.hasNext()) {
+            set.add(iterator.next().getId());
+        }
+        return set;
     }
 
     @Override

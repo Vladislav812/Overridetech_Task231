@@ -35,22 +35,14 @@
           th:errors="*{password}">passError</span>
     <br/>
 
-
     <label for="roles">Choose roles</label>
     <input type="checkbox" th:field="*{currentRoles}" id="roles"
            th:each="role:${allRoles}"
-           th:text="${role.getTitle()}"
-           th:value="${role.getId()}"
-           th:checked="${user.getRolesId().contains(role.getId())}"
-    />
-
+           th:text="${role.getTitle().replace('ROLE_', '').toUpperCase()}"
+           th:value="${role.getId()}"/>
     <span class="validationError"
           th:if="@{fields.hasErrors('currentRoles')}"
           th:errors="*{currentRoles}">rolesError</span>
-
-
-<!--    <label for="roles">Update roles</label>-->
-<!--    <input type="text" th:field="*{getRolesString()}" id="roles"/>-->
 
     <input type="submit" value="Update"/>
 </form>

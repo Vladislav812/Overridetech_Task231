@@ -38,30 +38,19 @@
     <label for="roles">Choose roles</label>
     <input type="checkbox" th:field="*{currentRoles}" id="roles"
            th:each="role:${rolesSet}"
-           th:text="${role.getTitle()}"
-           th:value="${role.getId()}"/>
+           th:text="${role.getTitle().replace('ROLE_', '').toUpperCase()}"
+           th:value="${role.getId()}"
+    />
 
     <span class="validationError"
           th:if="@{fields.hasErrors('currentRoles')}"
           th:errors="*{currentRoles}">rolesError</span>
-
-    <!--    <label for="roleslist">Choose roles</label>-->
-    <!--    <input type="checkbox" name="roleslist" id="roleslist"-->
-    <!--           th:each="role:${roleslist}"-->
-    <!--           th:text="${role.getTitle()}"-->
-    <!--           th:value="${role.getId()}"-->
-    <!--    />-->
-    <!--    <span class="validationError"-->
-    <!--          th:if="@{fields.hasErrors('currentRoles')}"-->
-    <!--          th:errors="*{currentRoles}">rolesError</span>-->
-
     <br/>
+
     <input type="submit" value="create"/>
 </form>
 <form th:method="POST" th:action="@{/logout}">
     <input type="submit" value="LOGOUT"/>
 </form>
-
-
 </body>
 </html>

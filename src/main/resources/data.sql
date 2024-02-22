@@ -6,10 +6,10 @@ insert into users (name, age, email, password) values ('Psina Sutulaya', 30,	'ps
 
 insert into roles (title) values ('ROLE_user');
 insert into roles (title) values ('ROLE_admin');
-insert into roles (title) values ('manager');
-insert into roles (title) values ('viewer');
-insert into roles (title) values ('editor');
-insert into roles (title) values ('moderator');
+insert into roles (title) values ('ROLE_manager');
+insert into roles (title) values ('ROLE_viewer');
+insert into roles (title) values ('ROLE_editor');
+insert into roles (title) values ('ROLE_moderator');
 
 insert into users_current_roles (user_id, current_roles_id) values (1, 1);
 insert into users_current_roles (user_id, current_roles_id) values (1, 2);

@@ -3,8 +3,6 @@ package overridetech.task231.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -22,8 +20,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")
-    //@DynamicUpdate
-    //@DynamicInsert
+//@DynamicUpdate
+//@DynamicInsert
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,8 +36,6 @@ public class User implements UserDetails {
     @NotBlank(message = "password cannot be empty!")
     private String password;
 
-    //    @Pattern(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$",
-//            message = "this is not valid email!")
     @NotBlank(message = "\"email\" cannot be empty!")
     @Email(message = "this is not valid email!")
     private String email;
@@ -51,7 +47,7 @@ public class User implements UserDetails {
         StringBuilder sb = new StringBuilder();
         Iterator<Role> iterator = currentRoles.iterator();
         while (iterator.hasNext()) {
-            sb.append(iterator.next().getAuthority());
+            sb.append(iterator.next().getAuthority().replace("ROLE_", "").toUpperCase());
             if (iterator.hasNext()) {
                 sb.append(", ");
             }

@@ -13,27 +13,15 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "roles")
-//@DynamicUpdate
-//@DynamicInsert
 public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
-//
-//    @ManyToMany
-//    private User user;
-
 
     @Override
     public String getAuthority() {
         return title;
     }
-
-    @Override
-    public String toString() {
-        return "id: " + id + ", title: " + title;
-    }
-
 }

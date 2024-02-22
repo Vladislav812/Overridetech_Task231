@@ -20,8 +20,6 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")
-//@DynamicUpdate
-//@DynamicInsert
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,14 +53,6 @@ public class User implements UserDetails {
         return sb.toString();
     }
 
-    public Set<Long> getRolesId() {
-        Set<Long> set = new HashSet<>();
-        Iterator<Role> iterator = currentRoles.iterator();
-        while (iterator.hasNext()) {
-            set.add(iterator.next().getId());
-        }
-        return set;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

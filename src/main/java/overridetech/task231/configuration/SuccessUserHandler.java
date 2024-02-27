@@ -13,12 +13,12 @@ import java.util.Set;
 
 @Component
 public class SuccessUserHandler implements AuthenticationSuccessHandler {
-
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
         if (roles.contains("ROLE_admin")) {
-            response.sendRedirect("/admin/users");
+//            response.sendRedirect("/admin/users");
+            response.sendRedirect("/start");
         } else if (roles.contains("ROLE_user")) {
             response.sendRedirect("/user");
         } else {

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="Send" onclick="submit()">
+    <script>
+       async function submit() {
+           let url = "http://localhost:8080/users";
+         let response = await fetch(url);
+          if (response.ok) {
+          let json=await response.json();
+         } else {
+            alert("HTTP error: " + response.status);
+         }
+        }
+    </script>
+
+</body>
+</html>

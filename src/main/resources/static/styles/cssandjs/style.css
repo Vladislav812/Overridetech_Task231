@@ -1,3 +1,8 @@
+.logout-btn {
+    background-color: #5c5c5c;
+    color: red;
+}
+
 .users__add {
     margin-bottom: 15px;
 }

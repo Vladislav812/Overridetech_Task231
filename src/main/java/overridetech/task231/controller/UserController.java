@@ -1,6 +1,7 @@
 package overridetech.task231.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import overridetech.task231.repository.UserRepository;
 import overridetech.task231.service.UserService;
 
 import javax.validation.Valid;
+import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -54,15 +56,30 @@ public class UserController {
         User user = new User();
         user.setCurrentRoles(roles);
 
-        model.addAttribute("user", user);
+        model.addAttribute("userform", user);
         model.addAttribute("rolesSet", roleSet);
 
         return "new";
     }
 
     @GetMapping("/admin/users")
-    public String getAllUsers(Model model) {
+    public String getAllUsers(Model model, Authentication authentication) {
         model.addAttribute("users", userService.findAllByOrderByIdAsc());
+        model.addAttribute("principal", (User) authentication.getPrincipal());
+
+        Set<Role> roleSet = roleRepository.findAll();
+
+        Role defaultRole = roleRepository.findRoleByTitle("ROLE_user");
+        Set<Role> roles = new HashSet<>();
+        roles.add(defaultRole);
+
+        User user = new User();
+        user.setCurrentRoles(roles);
+
+        model.addAttribute("userform", user);
+        model.addAttribute("rolesSet", roleSet);
+
+
         return "usersummary";
     }
 
@@ -107,7 +124,8 @@ public class UserController {
     }
 
     @GetMapping("/start")
-    public String returnBlankPage() {
+    public String returnStartPage() {
         return "start";
     }
+
 }

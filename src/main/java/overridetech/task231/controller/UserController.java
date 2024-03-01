@@ -128,4 +128,9 @@ public class UserController {
         return "start";
     }
 
+    @GetMapping("/userpage")
+    public String returnUserPage(){
+        return "userpage";
+    }
+
 }

@@ -9,6 +9,7 @@
 
 .users__cell {
     padding: 10px;
+    text-align: center;
 }
 
 .users__header {

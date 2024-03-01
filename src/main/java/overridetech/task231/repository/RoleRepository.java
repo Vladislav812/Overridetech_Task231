@@ -11,8 +11,10 @@ import java.util.Set;
 public interface RoleRepository extends CrudRepository<Role, Long> {
     public Role findRoleByTitle(String title);
 
-//    @Query(value = "select title from roles", nativeQuery = true)
-//    List<Role> findAll();
+    //    @Query(value = "select title from roles", nativeQuery = true)
+//    List<Role> findAllList();
+
     Set<Role> findAll();
+
     Set<Role> findByIdIn(List<Long> idList);
 }

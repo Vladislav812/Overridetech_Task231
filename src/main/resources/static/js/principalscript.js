@@ -1,10 +1,11 @@
 function getPrincipal() {
-    fetch("http://localhost:8080/principal")
+    fetch("/principal")
         .then((response) => response.json())
         .then((json) => {
             const table = document.getElementById("principaltablebody");
             table.innerHTML += `
                 <tr>
+                    <td class="users__cell col">${json.id}</td>
                     <td class="users__cell col">${json.name}</td>
                     <td class="users__cell col">${json.age}</td>
                     <td class="users__cell col">${json.email}</td>

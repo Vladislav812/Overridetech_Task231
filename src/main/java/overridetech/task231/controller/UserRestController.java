@@ -1,20 +1,20 @@
 package overridetech.task231.controller;
 
-import netscape.javascript.JSObject;
-import org.apache.coyote.Response;
+import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import overridetech.task231.model.Role;
 import overridetech.task231.model.User;
 import overridetech.task231.repository.RoleRepository;
-import overridetech.task231.repository.UserRepository;
 import overridetech.task231.service.UserService;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @RestController
 public class UserRestController {
@@ -22,74 +22,52 @@ public class UserRestController {
     UserService userService;
     @Autowired
     RoleRepository roleRepository;
-    @Autowired
-    private UserRepository userRepository;
 
-    @GetMapping("/sayhello")
+    @GetMapping("/users")
     @Cacheable
     public List<User> sayHello() {
-        System.out.println("returning all users");
         return userService.findAllByOrderByIdAsc();
     }
 
-//    @PostMapping("/testjs")
-//    public ResponseEntity testMethod(@RequestBody String s) {
-//        System.out.println("printing string");
-//        System.out.println(s);
-//        return new ResponseEntity(HttpStatus.OK);
-//    }
-
-    @PostMapping(path = "/createuser", consumes = "application/json")
+    @PostMapping(path = "/users", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public List<User> postRestUser(@RequestBody User user) {
-        System.out.println("creating: ");
-        System.out.println(user.getCurrentRoles());
-            userService.saveUser(user);
-
-////        System.out.println(payload);
-////        System.out.println(payload.get("currentRoles"));
-//        User user = new User();
-//        user.setName(payload.get("name").toString());
-//        user.setEmail((String) payload.get("email"));
-//        user.setPassword((String) payload.get("password"));
-//        user.setAge(Integer.parseInt((String) payload.get("age")));
-//
-//        String[] roles = (payload.get("currentRoles")).toString().split(",");
-//        System.out.println(Arrays.toString(roles));
-////        inboundRoles.forEach(System.out::println);
-////        Set<Role> roleSet = new HashSet<>();
-////        for (String role : inboundRoles) {
-////            roleSet.add(roleRepository.findRoleByTitle("ROLE_" + role));
-////        }
-////        System.out.println(roleSet);
-////        user.setCurrentRoles(roleSet);
-//////        System.out.println(roles);
-////        userService.saveUser(user);
-////        return sayHello();
-        return userService.findAllByOrderByIdAsc();
+    public User postRestUser(@RequestBody User user) {
+        Set<Role> currentRoles = new HashSet<>();
+        for (Role role : user.getCurrentRoles()) {
+            Long roleId = role.getId();
+            currentRoles.add(roleRepository.findById(roleId).get());
+        }
+        user.setCurrentRoles(currentRoles);
+        userService.saveUser(user);
+        return user;
     }
 
-    @GetMapping("/getroles")
+    @PatchMapping(path = "/users", consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public User patchRestUser(@RequestBody User user) {
+        Set<Role> currentRoles = new HashSet<>();
+        for (Role role : user.getCurrentRoles()) {
+            Long roleId = role.getId();
+            currentRoles.add(roleRepository.findById(roleId).get());
+        }
+        userService.saveUser(user);
+        return userService.findById(user.getId());
+    }
+
+    @GetMapping("/roles")
     public List<Role> returnAllRolesList() {
-        System.out.println("returning roles");
         return new ArrayList<Role>(roleRepository.findAll());
     }
 
 
-
-
-
-    @DeleteMapping("/deleteuser")
-    public void deleteUser(@RequestBody String name) {
-//        System.out.println(name);
-//        User user = userRepository.findUserByName(name);
-//        userRepository.
-        userRepository.deleteByName(name);
-//        userRepository.delete(user);
+    @DeleteMapping(path = "/users", consumes = "application/json")
+    public void deleteUser(@RequestBody JSONObject del) {
+        Long id = Long.parseLong((String) del.get("id"));
+        userService.deleteById(id);
     }
 
     @GetMapping("/principal")
-    public User getPrincipal(Authentication authentication){
+    public User getPrincipal(Authentication authentication) {
         return (User) authentication.getPrincipal();
     }
 

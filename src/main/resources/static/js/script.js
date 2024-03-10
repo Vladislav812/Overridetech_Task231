@@ -1,6 +1,6 @@
 const rolesMap = new Map();
-function createRoles() {
-    fetch("/roles")
+async function createRoles() {
+    await fetch("/roles")
         .then((response) => response.json())
         .then((json) => {
             let len = json.length;
@@ -22,17 +22,15 @@ async function getData() {
             let len = json.length;
             clearTableBody("summaryuserstable");
             for (let i = 0; i < len; i++) {
-
-
                 const table = document.getElementById("summaryuserstable");
                 table.innerHTML += `
                     <tr>
-                        <td class="users__cell col">${json[i].id}</td>
-                        <td class="users__cell col">${json[i].name}</td>
-                        <td class="users__cell col">${json[i].age}</td>
-                        <td class="users__cell col">${json[i].email}</td>
-                        <td class="users__cell col">${json[i].password}</td>
-                        <td class="users__cell col">${json[i].rolesString}</td>
+                        <td class="users__cell w-auto">${json[i].id}</td>
+                        <td class="users__cell w-auto">${json[i].name}</td>
+                        <td class="users__cell w-auto">${json[i].age}</td>
+                        <td class="users__cell w-auto">${json[i].email}</td>
+                        <td class="users__cell w-auto">${json[i].address}</td>
+                        <td class="users__cell w-auto">${json[i].rolesString}</td>
                         <td class="users__cell">
                            <button type="button" class="btn btn-primary button button--edit" data-toggle="modal" data-target="#edit${json[i].id}"><a>Edit</a></button>
                            <div class="modal fade" id="edit${json[i].id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -56,11 +54,15 @@ async function getData() {
                                                </div>
                                                <div class="form-group">
                                                    <label for="inputPassword">Password</label>
-                                                   <input type="password" class="form-control" id="inputPassword${json[i].id}" placeholder="Password" autocomplete="on" value="${json[i].password}"/>
+                                                   <input type="password" class="form-control" id="inputPassword${json[i].id}" placeholder="Password" autocomplete="on"/>
                                                </div>
                                                <div class="form-group">
-                                                   <label for="inputEmail">Email address</label>
+                                                   <label for="inputEmail">Email</label>
                                                    <input type="email" class="form-control" id="inputEmail${json[i].id}" aria-describedby="emailHelp" placeholder="Enter email" value="${json[i].email}" />
+                                               </div>
+                                               <div class="form-group">
+                                                   <label for="inputAddress">Address</label>
+                                                   <input type="address" class="form-control" id="inputAddress${json[i].id}" aria-describedby="addressHelp" placeholder="Enter address" value="${json[i].address}" />
                                                </div>
                                                <div class="form-group">
                                                    <label for="formControlSelector">Select role or roles</label>
@@ -82,66 +84,65 @@ async function getData() {
                         </td>
                     </tr>
                 `;
-                    let len = rolesMap.length;
-                    for (const key of rolesMap.keys()) {
-                      const opt = document.createElement("option");
-                      const optext = document.createTextNode(key);
-                      opt.appendChild(optext);
-                      document.getElementById("formControlSelector"+json[i].id).appendChild(opt);
-                    }
+                let len = rolesMap.length;
+                for (const key of rolesMap.keys()) {
+                    const opt = document.createElement("option");
+                    const optext = document.createTextNode(key);
+                    opt.appendChild(optext);
+                    document.getElementById("formControlSelector" + json[i].id).appendChild(opt);
+                }
             }
         });
-
-
 }
 getData();
 
 async function createUser() {
-     const inputFullName = document.getElementById("inputFullName").value;
-     const inputAge = document.getElementById("inputAge").value;
-     const inputPassword = document.getElementById("inputPassword").value;
-     const inputEmail = document.getElementById("inputEmail").value;
-     let formControlSelector = Array.from(document.getElementById("formControlSelector").options)
-         .filter((option) => option.selected)
-         .map((option) => rolesMap.get(option.value));
+    const inputFullName = document.getElementById("inputFullName").value;
+    const inputAge = document.getElementById("inputAge").value;
+    const inputPassword = document.getElementById("inputPassword").value;
+    const inputEmail = document.getElementById("inputEmail").value;
+    const inputAddress = document.getElementById("inputAddress").value;
+    let formControlSelector = Array.from(document.getElementById("formControlSelector").options)
+        .filter((option) => option.selected)
+        .map((option) => rolesMap.get(option.value));
 
-     let len = formControlSelector.length;
-     const rolArr = [];
-     for (let i = 0; i < len; i++) {
-         const o = {
-             id: formControlSelector[i]
-         };
-         rolArr[i] = o;
-     }
+    let len = formControlSelector.length;
+    const rolArr = [];
+    for (let i = 0; i < len; i++) {
+        const o = {
+            id: formControlSelector[i],
+        };
+        rolArr[i] = o;
+    }
 
-     let newUser = {
-         name: inputFullName,
-         age: inputAge,
-         password: inputPassword,
-         email: inputEmail,
-         currentRoles: rolArr
-     };
+    let newUser = {
+        name: inputFullName,
+        age: inputAge,
+        password: inputPassword,
+        email: inputEmail,
+        address: inputAddress,
+        currentRoles: rolArr,
+    };
 
-     await fetch("/users", {
-         method: "POST",
-         body: JSON.stringify(newUser),
-         headers: {
-             "Content-type": "application/json; charset=UTF-8"
-         }
-     });
-  await   getData();
+    await fetch("/users", {
+        method: "POST",
+        body: JSON.stringify(newUser),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+        },
+    });
+    await getData();
 }
 
-
 async function deleteUser(uid) {
-console.log(uid);
-let del = {id:uid};
+    console.log(uid);
+    let del = { id: uid };
     await fetch("/users", {
         method: "DELETE",
         body: JSON.stringify(del),
         headers: {
-            "Content-type": "application/json; charset=UTF-8"
-        }
+            "Content-type": "application/json; charset=UTF-8",
+        },
     });
     getData();
 }
@@ -151,19 +152,22 @@ function clearTableBody(bodyName) {
     table.innerHTML = "";
 }
 
+let id;
 function getPrincipal() {
     fetch("/principal")
         .then((response) => response.json())
         .then((json) => {
+            id=json.id;
             const table = document.getElementById("principaltablebody");
+            table.innerHTML = "";
             table.innerHTML += `
-                     <tr>
-                         <td class="users__cell col">${json.id}</td>
-                         <td class="users__cell col">${json.name}</td>
-                         <td class="users__cell col">${json.age}</td>
-                         <td class="users__cell col">${json.email}</td>
-                         <td class="users__cell col">${json.password}</td>
-                         <td class="users__cell col">${json.rolesString}</td>
+                     <tr class="gx-5">
+                         <td class="users__cell w-auto">${json.id}</td>
+                         <td class="users__cell w-auto">${json.name}</td>
+                         <td class="users__cell w-auto">${json.age}</td>
+                         <td class="users__cell w-auto">${json.email}</td>
+                         <td class="users__cell w-auto">${json.address}</td>
+                         <td class="users__cell w-auto">${json.rolesString}</td>
                      </tr>
                 `;
 
@@ -172,42 +176,60 @@ function getPrincipal() {
 }
 getPrincipal();
 
+async function editUser(userid) {
+    const inputFullName = document.getElementById("inputFullName" + userid).value;
+    const inputAge = document.getElementById("inputAge" + userid).value;
+    const inputPassword = document.getElementById("inputPassword" + userid).value;
+    const inputEmail = document.getElementById("inputEmail" + userid).value;
+    const inputAddress = document.getElementById("inputAddress" + userid).value;
+    let formControlSelector = Array.from(document.getElementById("formControlSelector" + userid).options)
+        .filter((option) => option.selected)
+        .map((option) => rolesMap.get(option.value));
 
- async function editUser(userid) {
-  const inputFullName = document.getElementById("inputFullName"+userid).value;
-       const inputAge = document.getElementById("inputAge"+userid).value;
-       const inputPassword = document.getElementById("inputPassword"+userid).value;
-       const inputEmail = document.getElementById("inputEmail"+userid).value;
-       let formControlSelector = Array.from(document.getElementById("formControlSelector"+userid).options)
-           .filter((option) => option.selected)
-           .map((option) => rolesMap.get(option.value));
+    let len = formControlSelector.length;
+    const rolArr = [];
+    for (let i = 0; i < len; i++) {
+        const o = {
+            id: formControlSelector[i],
+        };
+        rolArr[i] = o;
+    }
 
-       let len = formControlSelector.length;
-       const rolArr = [];
-       for (let i = 0; i < len; i++) {
-           const o = {
-               id: formControlSelector[i]
-           };
-           rolArr[i] = o;
-       }
+    let newUser = {
+        id: userid,
+        name: inputFullName,
+        age: inputAge,
+        password: inputPassword === "" ? null : inputPassword,
+        email: inputEmail,
+        address: inputAddress,
+        currentRoles: rolArr.length === 0 ? null : rolArr
+    };
 
-       let newUser = {
-           id: userid,
-           name: inputFullName,
-           age: inputAge,
-           password: inputPassword,
-           email: inputEmail,
-           currentRoles: rolArr
-       };
-
-       await fetch("/users", {
-           method: "PATCH",
-           body: JSON.stringify(newUser),
-           headers: {
-               "Content-type": "application/json; charset=UTF-8"
-           }
-       });
-     await  getData();
+    await fetch("/users", {
+        method: "PATCH",
+        body: JSON.stringify(newUser),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+        },
+    });
+    await getData();
+    getPrincipal();
 }
 
-
+async function testRestConsume() {
+    let url = "/restconsume?id="+id;
+    await fetch(url)
+        .then(response => response.json())
+        .then(json => {
+            let len = json.length;
+            const table = document.getElementById("usertableaddressbody");
+            for (let i = 0; i < len; i++){
+                table.innerHTML += `
+                    <tr>
+                       <td class="users__cell w-auto">${json[i].postal_code}</td>
+                       <td class="users__cell w-auto">${json[i].address_str}</td>
+                    </tr>
+                `;
+            }
+        });
+}

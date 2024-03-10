@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import overridetech.task231.model.Role;
 import overridetech.task231.model.User;
 import overridetech.task231.repository.RoleRepository;
+import overridetech.task231.repository.UserRepository;
 import overridetech.task231.service.UserService;
 
 import java.util.HashMap;
@@ -14,7 +15,6 @@ import java.util.Set;
 
 @SpringBootApplication
 public class Task231Application {
-
 
     public static void main(String[] args) {
         SpringApplication.run(Task231Application.class, args);

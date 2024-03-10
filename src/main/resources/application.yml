@@ -4,17 +4,12 @@ spring:
     url: 'jdbc:postgresql://localhost:5433/OverridetechUsers'
     username: 'postgres'
     password: 'admin'
-  sql:
-    init:
-      mode: always
-      data-locations: classpath:data.sql
+
   mvc:
     hiddenmethod:
       filter:
         enabled: true
   jpa:
-    defer-datasource-initialization:
-      true
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
       show-sql: true

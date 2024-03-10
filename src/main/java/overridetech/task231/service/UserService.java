@@ -1,19 +1,29 @@
 package overridetech.task231.service;
 
+import net.minidev.json.JSONArray;
+import net.minidev.json.JSONObject;
+import overridetech.task231.model.Role;
 import overridetech.task231.model.User;
+import overridetech.task231.model.UserDto;
 
 import java.util.List;
 
 public interface UserService {
-    void saveUser(User user);
+    public void saveUser(User user);
 
-    List<User> findAllByOrderByIdAsc();
+    public void patchUser(UserDto userDto);
 
-    User findById(long id);
+    public List<User> findAllByOrderByIdAsc();
 
-    void deleteById(long id);
+    public User findById(long id);
 
-    void deleteByName(String name);
+    public void deleteUser(JSONObject jsonObject);
 
-    User findUserByName(String name);
+    public void deleteByName(String name);
+
+    public User findUserByName(String name);
+
+    public List<Role> getAllRoles();
+
+    public JSONArray testRestConsume(Long userId);
 }

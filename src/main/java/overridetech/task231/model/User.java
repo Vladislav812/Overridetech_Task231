@@ -1,9 +1,9 @@
 package overridetech.task231.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -12,7 +12,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PositiveOrZero;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -20,6 +19,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "users")
 public class User implements UserDetails {
     @Id
@@ -38,6 +38,8 @@ public class User implements UserDetails {
     @NotBlank(message = "\"email\" cannot be empty!")
     @Email(message = "this is not valid email!")
     private String email;
+
+    private String address;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> currentRoles;

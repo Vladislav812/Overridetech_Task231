@@ -30,6 +30,7 @@
     <div class="nav flex-column nav-pills col-2 me-3 bg-white" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         <a type="button" class="nav-link active text-left" id="admin-panel-tab" href="#admin-panel" data-bs-toggle="pill" data-bs-target="#admin-panel" role="tab" aria-controls="admin-panel" aria-selected="true">Admin</a>
         <a type="button" class="nav-link text-left" id="user-panel-tab" href="#user-panel" data-bs-toggle="pill" data-bs-target="#user-panel"  role="tab" aria-controls="user-panel" aria-selected="false">User</a>
+        <a type="button" class="nav-link text-left" id="user-address-tab" href="#user-address-panel" data-bs-toggle="pill" data-bs-target="#user-address-panel"  role="tab" aria-controls="user-panel" aria-selected="false">Post Office</a>
     </div>
     <div class="tab-content col bg-light" id="v-pills-tabContent">
         <div class="tab-pane fade show active" id="admin-panel" role="tabpanel" aria-labelledby="admin-panel-tab">
@@ -50,14 +51,14 @@
                             <table class="users__table" id="pivotTable">
                                 <thead class="users__header">
                                 <tr>
-                                    <th class="users__header-cell users__cell col">ID</th>
-                                    <th class="users__header-cell users__cell col">Name</th>
-                                    <th class="users__header-cell users__cell col">Age</th>
-                                    <th class="users__header-cell users__cell col">Email</th>
-                                    <th class="users__header-cell users__cell col">Password</th>
-                                    <th class="users__header-cell users__cell col">Roles</th>
-                                    <th class="users__header-cell users__cell col">Update</th>
-                                    <th class="users__header-cell users__cell col">Remove</th>
+                                    <th class="users__header-cell users__cell w-auto">ID</th>
+                                    <th class="users__header-cell users__cell w-auto">Name</th>
+                                    <th class="users__header-cell users__cell w-auto">Age</th>
+                                    <th class="users__header-cell users__cell w-auto">Email</th>
+                                    <th class="users__header-cell users__cell w-auto">Address</th>
+                                    <th class="users__header-cell users__cell w-auto">Roles</th>
+                                    <th class="users__header-cell users__cell w-auto">Update</th>
+                                    <th class="users__header-cell users__cell w-auto">Remove</th>
                                 </tr>
                                 </thead>
                                 <tbody id="summaryuserstable">
@@ -79,8 +80,12 @@
                                     <input type="password" class="form-control col" id="inputPassword" placeholder="Password" autocomplete="on"/>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail">Email address</label>
+                                    <label for="inputEmail">Email</label>
                                     <input type="email" class="form-control col" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAddress">Address</label>
+                                    <input type="address" class="form-control col" id="inputAddress" aria-describedby="addressHelp" placeholder="Enter address" />
                                 </div>
                                 <div class="form-group">
                                     <label for="formControlSelector">Select role or roles</label>
@@ -98,26 +103,36 @@
             <table class="users__table" id="principalusertable">
                 <thead class="users__header col">
                 <tr>
-                    <th class="users__header-cell users__cell col">ID</th>
-                    <th class="users__header-cell users__cell col">Name</th>
-                    <th class="users__header-cell users__cell col">Age</th>
-                    <th class="users__header-cell users__cell col">Email</th>
-                    <th class="users__header-cell users__cell col">Password</th>
-                    <th class="users__header-cell users__cell col">Roles</th>
+                    <th class="users__header-cell users__cell w-auto">ID</th>
+                    <th class="users__header-cell users__cell w-auto">Name</th>
+                    <th class="users__header-cell users__cell w-auto">Age</th>
+                    <th class="users__header-cell users__cell w-auto">Email</th>
+                    <th class="users__header-cell users__cell w-auto">Address</th>
+                    <th class="users__header-cell users__cell w-auto">Roles</th>
                 </tr>
                 </thead>
                 <tbody id="principaltablebody"></tbody>
             </table>
         </div>
+        <div class="tab-pane fade" id="user-address-panel" role="tabpanel" aria-labelledby="user-address-tab">
+            <header class="h1">Post Office Address</header>
+            <div>
+                <button onclick="testRestConsume()">Show nearest post offices</button>
+            </div>
+            <table class="users__table w-auto gx-5" id="usertableaddress">
+                <thead class="users__header col">
+                <tr>
+                    <th class="users__header-cell users__cell">Postal Code</th>
+                    <th class="users__header-cell users__cell">Address</th>
+                </tr>
+                </thead>
+                <tbody id="usertableaddressbody"></tbody>
+            </table>
+        </div>
     </div>
 </div>
-
 <button onclick="getData()">renew</button>
-
-
 <script src="js/script.js"></script>
-
-
 </body>
 </html>
 </html>

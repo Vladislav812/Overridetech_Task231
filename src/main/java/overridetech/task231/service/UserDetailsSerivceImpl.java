@@ -11,7 +11,7 @@ import overridetech.task231.repository.UserRepository;
 @Service
 public class UserDetailsSerivceImpl implements UserDetailsService {
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

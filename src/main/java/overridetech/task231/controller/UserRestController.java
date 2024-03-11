@@ -9,7 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import overridetech.task231.model.Role;
 import overridetech.task231.model.User;
-import overridetech.task231.model.UserDto;
+import overridetech.task231.Dto.UserDto;
 import overridetech.task231.service.UserService;
 
 import java.util.List;
@@ -57,10 +57,10 @@ public class UserRestController {
         return userService.findById(((User)authentication.getPrincipal()).getId());
     }
 
-    @GetMapping("/restconsume")
-    public JSONArray testRestConsume(@RequestParam(name = "id") String userId) {
+    @GetMapping("/postoffices")
+    public JSONArray getNearestPostOffices(@RequestParam(name = "id") String userId) {
         Long id = Long.parseLong(userId);
-        return userService.testRestConsume(id);
+        return userService.getNearestPostOffices(id);
     }
 
 }

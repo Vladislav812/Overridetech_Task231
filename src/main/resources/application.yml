@@ -4,7 +4,6 @@ spring:
     url: 'jdbc:postgresql://localhost:5433/OverridetechUsers'
     username: 'postgres'
     password: 'admin'
-
   mvc:
     hiddenmethod:
       filter:
@@ -13,3 +12,7 @@ spring:
     hibernate:
       ddl-auto: create-drop
       show-sql: true
+
+secrettokens:
+  APIKey: ${APIKey}
+  secretKey: ${secretKey}

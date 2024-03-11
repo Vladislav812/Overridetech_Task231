@@ -1,9 +1,10 @@
-package overridetech.task231.model;
+package overridetech.task231.Dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import overridetech.task231.model.Role;
 
 import java.util.Set;
 

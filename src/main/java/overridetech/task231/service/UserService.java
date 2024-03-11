@@ -4,7 +4,7 @@ import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import overridetech.task231.model.Role;
 import overridetech.task231.model.User;
-import overridetech.task231.model.UserDto;
+import overridetech.task231.Dto.UserDto;
 
 import java.util.List;
 
@@ -25,5 +25,5 @@ public interface UserService {
 
     public List<Role> getAllRoles();
 
-    public JSONArray testRestConsume(Long userId);
+    public JSONArray getNearestPostOffices(Long userId);
 }

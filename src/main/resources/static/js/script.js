@@ -216,8 +216,8 @@ async function editUser(userid) {
     getPrincipal();
 }
 
-async function testRestConsume() {
-    let url = "/restconsume?id="+id;
+async function getNearestPostOffices() {
+    let url = "/postoffices?id="+id;
     await fetch(url)
         .then(response => response.json())
         .then(json => {

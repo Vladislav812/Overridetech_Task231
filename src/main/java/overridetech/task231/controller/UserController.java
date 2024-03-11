@@ -3,6 +3,7 @@ package overridetech.task231.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.view.RedirectView;
 import overridetech.task231.service.UserService;
 
 @Controller
@@ -19,6 +20,11 @@ public class UserController {
     @GetMapping("/userpage")
     public String returnUserPage() {
         return "userpage";
+    }
+
+    @GetMapping("/")
+    public RedirectView loginRedirect() {
+        return new RedirectView("/start");
     }
 
 }

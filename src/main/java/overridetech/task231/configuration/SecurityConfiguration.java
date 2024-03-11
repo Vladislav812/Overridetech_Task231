@@ -20,18 +20,10 @@ import org.springframework.security.crypto.password.StandardPasswordEncoder;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
-    @Qualifier("userDetailsSerivceImpl")
+    @Qualifier("userServiceImpl")
     private UserDetailsService userDetailsService;
     @Autowired
     private SuccessUserHandler successUserHandler;
-
-//    @Value("${spring.websecurity.debug:false}")
-//    boolean webSecurityDebug;
-//
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        web.debug(webSecurityDebug);
-//    }
 
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder authN) throws Exception {

@@ -209,8 +209,8 @@ async function editUser(userid) {
         method: "PATCH",
         body: JSON.stringify(newUser),
         headers: {
-            "Content-type": "application/json; charset=UTF-8",
-        },
+            "Content-type": "application/json; charset=UTF-8"
+        }
     });
     await getData();
     getPrincipal();
@@ -223,6 +223,7 @@ async function getNearestPostOffices() {
         .then(json => {
             let len = json.length;
             const table = document.getElementById("usertableaddressbody");
+            table.innerHTML = ``;
             for (let i = 0; i < len; i++){
                 table.innerHTML += `
                     <tr>
@@ -233,3 +234,4 @@ async function getNearestPostOffices() {
             }
         });
 }
+

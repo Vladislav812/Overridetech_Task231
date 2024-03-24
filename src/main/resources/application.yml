@@ -1,18 +1,35 @@
-spring:
-  datasource:
-    driverClassName: 'org.postgresql.Driver'
-    url: 'jdbc:postgresql://localhost:5433/OverridetechUsers'
-    username: 'postgres'
-    password: 'admin'
-  mvc:
-    hiddenmethod:
-      filter:
-        enabled: true
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-      show-sql: true
+#spring:
+#  datasource:
+#    driverClassName: 'org.postgresql.Driver'
+##    url: 'jdbc:postgresql://localhost:5433/OverridetechUsers'
+#    url: 'jdbc:postgresql://localhost:5433/Overridetech'
+#    username: 'postgres'
+#    password: 'admin'
+##  mvc:
+##    hiddenmethod:
+##      filter:
+##        enabled: true
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#      show-sql: true
+#
+##dadata:
+##  apiToken: ${APIKey}
+##  secretKey: ${secretKey}
+dadata:
+  apiToken: ${dadata_APIKey}
+  secretKey: ${dadata_secretKey}
 
-secrettokens:
-  APIKey: ${APIKey}
-  secretKey: ${secretKey}
+
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        web: TRACE
+#      hibernate: TRACE
+
+#//working config!
+#logging.logstash:
+#  enabled: true
+#  url: 194.87.237.197:50000

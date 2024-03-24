@@ -1,7 +1,7 @@
 let id;
 
-function getPrincipal() {
-    fetch("/principal")
+async function getPrincipal() {
+    await fetch("/principal")
         .then((response) => response.json())
         .then((json) => {
             id=json.id;
@@ -29,6 +29,7 @@ async function getNearestPostOffices() {
         .then(json => {
             let len = json.length;
             const table = document.getElementById("usertableaddressbody");
+            table.innerHTML = ``;
             for (let i = 0; i < len; i++){
                 table.innerHTML += `
                     <tr>

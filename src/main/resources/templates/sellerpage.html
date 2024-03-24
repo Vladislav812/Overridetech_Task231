@@ -28,7 +28,7 @@
     <div class="nav flex-column nav-pills col-2 me-3 bg-white" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         <a type="button" class="nav-link active text-left" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">User </a>
         <a type="button" class="nav-link text-left" id="user-address-tab" href="#user-address-panel" data-bs-toggle="pill" data-bs-target="#user-address-panel"  role="tab" aria-controls="user-panel" aria-selected="false">Post Office</a>
-        <a type="button" class="nav-link text-left" id="user-store-tab" href="#user-store-panel" data-bs-toggle="pill" data-bs-target="#user-store-panel"  role="tab" aria-controls="user-panel" aria-selected="false">Store</a>
+        <a type="button" class="nav-link text-left" id="seller-admin-tab" href="#seller-admin-panel" data-bs-toggle="pill" data-bs-target="#seller-admin-panel"  role="tab" aria-controls="user-panel" aria-selected="false">Store</a>
     </div>
     <div class="tab-content col bg-light" id="v-pills-tabContent">
         <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
@@ -62,33 +62,66 @@
                 <tbody id="usertableaddressbody"></tbody>
             </table>
         </div>
-        <div class="tab-pane fade" id="user-store-panel" role="tabpanel" aria-labelledby="user-store-tab">
+        <div class="tab-pane fade" id="seller-admin-panel" role="tabpanel" aria-labelledby="seller-admin-tab">
+            <header class="h1">Seller Store Management</header>
             <div>
-                <header class="h1">Online Store</header>
-                <button onclick="commitOrder()">Commit My Order</button>
+                <table id="product-input-form-table">
+                    <tr>
+                        <td id="preload-image-icon"><input type="file" id="selectImage" onchange="showImage(event)"/><img src="" id="uploadingImage"></td>
+                        <td>
+                            <div>
+                                <label for="enterTitle">Enter Title</label>
+                                <input type="text" id="enterTitle"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <label for="enterDescription">Enter Description</label>
+                                <input type="text" id="enterDescription"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <label for="enterQuantity">Enter Quantity For Sale</label>
+                                <input type="number" id="enterQuantity"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <label for="enterPrice">Enter Price Per Unit</label>
+                                <input type="number" id="enterPrice"/>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <button onclick="createProductCard()">Create New Product Card</button>
             </div>
+            <br>
+            <button onclick="showSummaryProductTable()">Show All Products</button>
+            <br>
             <div>
                 <table >
-                    <thead  class="users__header w-auto">
+                <thead  class="users__header col">
                     <tr>
-                        <th class="users__header-cell users__cell w-auto">Image</th>
                         <th class="users__header-cell users__cell w-auto">Title</th>
+                        <th class="users__header-cell users__cell w-auto">Image</th>
                         <th class="users__header-cell users__cell w-auto">Description</th>
                         <th class="users__header-cell users__cell w-auto">Available Quantity</th>
                         <th class="users__header-cell users__cell w-auto">Price Per Unit</th>
                         <th class="users__header-cell users__cell w-auto">Seller Name</th>
-                        <th class="users__header-cell users__cell w-auto">Buy</th>
+                        <th class="users__header-cell users__cell w-auto">Edit </th>
+                        <th class="users__header-cell users__cell w-auto">Delete </th>
                     </tr>
-                    </thead>
-                    <tbody id="summary-product-table-body"></tbody>
+                </thead>
+                <tbody id="summary-product-table-body"></tbody>
                 </table>
             </div>
         </div>
     </div>
 
 </div>
-<script src="js/principalscript.js"></script>
-<script src="js/userscript.js"></script>
+<script src="js/seller.js"></script>
+
 </body>
 </html>
 </html>

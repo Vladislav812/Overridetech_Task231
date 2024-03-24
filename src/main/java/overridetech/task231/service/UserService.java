@@ -4,7 +4,7 @@ import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import overridetech.task231.model.Role;
 import overridetech.task231.model.User;
-import overridetech.task231.Dto.UserDto;
+import overridetech.task231.dto.UserDto;
 
 import java.util.List;
 

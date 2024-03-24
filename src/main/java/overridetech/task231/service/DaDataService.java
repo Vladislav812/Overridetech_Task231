@@ -10,7 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import overridetech.task231.configuration.AppConfiguration;
+import overridetech.task231.properties.DadataProperties;
 import overridetech.task231.repository.UserRepository;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class DaDataService {
     }
 
     @Autowired
-    private AppConfiguration appConfiguration;
+    private DadataProperties dadataProperties;
 
     private double radius_meters = 1000.0;
     private String urlForCoordinates = "https://cleaner.dadata.ru/api/v1/clean/address";
@@ -39,8 +39,8 @@ public class DaDataService {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set("Authorization", appConfiguration.getAPIKey());
-        headers.set("X-Secret", appConfiguration.getSecretKey());
+        headers.set("Authorization", dadataProperties.getApiToken());
+        headers.set("X-Secret", dadataProperties.getSecretKey());
         headers.set("Accept", acceptValue);
 
         String body = userRepository.findById(userId).get().getAddress();

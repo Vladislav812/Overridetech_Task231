@@ -11,7 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import overridetech.task231.model.Role;
 import overridetech.task231.model.User;
-import overridetech.task231.Dto.UserDto;
+import overridetech.task231.dto.UserDto;
 import overridetech.task231.repository.RoleRepository;
 import overridetech.task231.repository.UserRepository;
 import overridetech.task231.util.UserMapper;

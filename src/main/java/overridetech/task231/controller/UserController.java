@@ -21,6 +21,8 @@ public class UserController {
     public String returnUserPage() {
         return "userpage";
     }
+    @GetMapping("/sellerpage")
+    public String returnSellerPage(){ return "sellerpage";}
 
     @GetMapping("/")
     public RedirectView loginRedirect() {

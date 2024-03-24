@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Card</title>
+    <link href="css/style.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<div>
+    <table >
+        <thead  class="users__header w-auto">
+        <tr>
+            <th class="users__header-cell users__cell w-auto">Title</th>
+            <th class="users__header-cell users__cell w-auto">Image</th>
+            <th class="users__header-cell users__cell w-auto">Description</th>
+            <th class="users__header-cell users__cell w-auto">Available Quantity</th>
+            <th class="users__header-cell users__cell w-auto">Price Per Unit</th>
+            <th class="users__header-cell users__cell w-auto">Seller Name</th>
+        </tr>
+        </thead>
+        <tbody id="product-card-table-body"></tbody>
+    </table>
+</div>
+
+<button onclick="patchProduct()">Save Card and Close Page</button>
+<script src="js/productcard.js"></script>
+</body>
+</html>

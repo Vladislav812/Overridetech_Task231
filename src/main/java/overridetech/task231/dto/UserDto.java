@@ -1,4 +1,4 @@
-package overridetech.task231.Dto;
+package overridetech.task231.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -20,6 +20,9 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
+      - name: Test create folder
+        run: mkdir testFolder
+
       - name: Build with Maven
         run: |
           .\.mvn\wrapper\maven-wrapper.jar clean package -DskipTests

@@ -17,13 +17,15 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Build with Maven
+      - name: Build with Maven and copy jar to docker folder
         run: |
           mvn clean package -B --file pom.xml -DskipTests=true
-
-      - name: Copy jar to docker folder
-        run: |
-          dir
           copy target\task231-0.0.1-SNAPSHOT.jar src\main\docker
-          cd src\main\docker
-          dir
+          
+      - name: build docker image
+        run: |
+          cd src/main/docker
+          docker-compose up
+          docker ps
+          docker images
+          docker-compose down

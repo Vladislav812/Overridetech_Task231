@@ -25,6 +25,7 @@ jobs:
       - name: build docker image
         run: |
           cd src/main/docker
+          docker -v
           docker-compose up
           docker ps
           docker images

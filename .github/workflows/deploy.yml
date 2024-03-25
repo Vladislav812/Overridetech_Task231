@@ -22,10 +22,14 @@ jobs:
 
       - name: Build with Maven
         run: |
-          mvnw.cmd clean package -DskipTests
+          .mvn\wrapper\maven-wrapper.jar clean package -DskipTests
 
       - name: Copy jar to docker folder
         run: |
+          dir
+          cd .mvn
+          dir
+          cd wrapper
           dir
           # copy target\task231-0.0.1-SNAPSHOT.jar src\main\docker
           # cd src\main\docker

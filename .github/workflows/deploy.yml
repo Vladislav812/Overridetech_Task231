@@ -20,10 +20,12 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Test create folder
-        run: mkdir testFolder
-
       - name: Build with Maven
         run: |
           .\.mvn\wrapper\maven-wrapper.jar clean package -DskipTests
-        
+
+      - name: Copy jar to docker folder
+        run: |
+          copy target\task231-0.0.1-SNAPSHOT.jar src\main\docker
+          cd src\main\docker
+          dir

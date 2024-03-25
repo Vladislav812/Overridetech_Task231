@@ -26,6 +26,7 @@ jobs:
 
       - name: Copy jar to docker folder
         run: |
+          dir
           copy target\task231-0.0.1-SNAPSHOT.jar src\main\docker
           cd src\main\docker
           dir

@@ -1,4 +1,4 @@
-name: Build & Deploy
+# name: Build & Deploy
 
 on:
   push:
@@ -28,4 +28,4 @@ jobs:
           docker-compose up
           docker ps
           docker images
-          docker-compose down
+          # docker-compose down

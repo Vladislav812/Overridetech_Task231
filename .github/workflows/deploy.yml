@@ -22,7 +22,7 @@ jobs:
 
       - name: Build with Maven
         run: |
-          .mvn\wrapper\maven-wrapper.jar clean package -DskipTests -X
+          .mvn\wrapper\maven-wrapper.jar clean package -DskipTests --debug
 
       - name: Copy jar to docker folder
         run: |

@@ -8,7 +8,7 @@ on:
 jobs:
   build_jar:
     name: Build java jar package
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -20,10 +20,10 @@ jobs:
       - name: Build with Maven and copy jar to docker folder
         run: |
           mvn clean package -B --file pom.xml -DskipTests=true
-          copy target\task231-0.0.1-SNAPSHOT.jar src\main\docker
+          cp ./target/task231-0.0.1-SNAPSHOT.jar ./src/main/docker
           
       - name: build docker image
         run: |
-          cd src/main/docker
+          cd ./src/main/docker
           docker image build -t server-image:latest .
           docker images

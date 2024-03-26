@@ -25,8 +25,6 @@ jobs:
       - name: build docker image
         run: |
           cd src/main/docker
-          docker -v
-          docker-compose up
-          docker ps
+          docker image build -t sever-image:latest .
           docker images
           # docker-compose down

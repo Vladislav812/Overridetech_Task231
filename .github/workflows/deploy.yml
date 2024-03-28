@@ -45,14 +45,17 @@ jobs:
       #     push: true
       #     tags: dockeruser7234/server-image
 
-      - name: ssh_connect
+      - name: Ssh Connect
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: 194.87.237.197
-          username: vladislav
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
+            docker stop server-container
+            docker rm server-container
+            docker rmi dockeruser7234/server-image
             ls
             docker ps
             docker images

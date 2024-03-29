@@ -55,7 +55,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           # source: "./src/main/docker/.env,./src/main/docker/docker-compose.yml"
           source: "actions_test.txt"
-          target: /home/${{ secrets.SSH_USERNAME }}
+          target: "/home/${{ secrets.SSH_USERNAME }}/"
           overwrite: true
 
 

@@ -53,8 +53,9 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           port: 22
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "./src/main/docker/.env,./src/main/docker/docker-compose.yml"
+          source: "./src/main/docker/.env,./src/main/docker/docker-compose.yaml"
           target: "/home/vladislav/"
+          strip_components: 2
           overwrite: true
       
 

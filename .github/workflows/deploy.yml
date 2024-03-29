@@ -47,17 +47,18 @@ jobs:
 
       
       - name: Copy Starting Files
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          port: 22
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          # source: "./src/main/docker/.env,./src/main/docker/docker-compose.yml"
-          source: "actions_test.txt"
-          target: "/home/${{ secrets.SSH_USERNAME }}/"
-          overwrite: true
-
+        # uses: appleboy/scp-action@v0.1.7
+        # with:
+        #   host: ${{ secrets.SSH_HOST }}
+        #   username: ${{ secrets.SSH_USERNAME }}
+        #   port: 22
+        #   key: ${{ secrets.SSH_PRIVATE_KEY }}
+        #   # source: "./src/main/docker/.env,./src/main/docker/docker-compose.yml"
+        #   source: "actions_test.txt"
+        #   target: "/home/vladislav/"
+        #   overwrite: true
+        run:
+          scp ./actions_test.txt vladislav@194.87.237.197:/home/vladislav
 
         
       # - name: Ssh Connect

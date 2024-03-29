@@ -24,8 +24,8 @@ jobs:
         run: |
           mvn clean package -B --file pom.xml -DskipTests=true
           cp ./target/task231-0.0.1-SNAPSHOT.jar ./src/main/docker
-          # cd ./src/main/docker
-          # ls
+          cd ./src/main/docker
+          ls
           
       # - name: Build Docker Image of Server
       #   run: |
@@ -55,30 +55,30 @@ jobs:
           tags: dockeruser7234/server-image
 
       
-      - name: Copy Starting Files
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          port: 22
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "./src/main/docker/.env,./src/main/docker/docker-compose.yaml"
-          target: "/home/${{ secrets.SSH_USERNAME }}/"
-          strip_components: 4
-          overwrite: true
+      # - name: Copy Starting Files
+      #   uses: appleboy/scp-action@v0.1.7
+      #   with:
+      #     host: ${{ secrets.SSH_HOST }}
+      #     username: ${{ secrets.SSH_USERNAME }}
+      #     port: 22
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     source: "./src/main/docker/.env,./src/main/docker/docker-compose.yaml"
+      #     target: "/home/${{ secrets.SSH_USERNAME }}/"
+      #     strip_components: 4
+      #     overwrite: true
       
-      - name: Ssh Connect
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
-          script: |
-            docker stop dockeruser7234-server-container
-            docker rm dockeruser7234-server-container
-            docker rmi dockeruser7234/server-image
-            docker stop dockeruser7234-database-container
-            docker rm dockeruser7234-database-container
-            docker pull dockeruser7234/server-image
-            docker-compose up
+      # - name: Ssh Connect
+      #   uses: appleboy/ssh-action@v1.0.3
+      #   with:
+      #     host: ${{ secrets.SSH_HOST }}
+      #     username: ${{ secrets.SSH_USERNAME }}
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     port: 22
+      #     script: |
+      #       docker stop dockeruser7234-server-container
+      #       docker rm dockeruser7234-server-container
+      #       docker rmi dockeruser7234/server-image
+      #       docker stop dockeruser7234-database-container
+      #       docker rm dockeruser7234-database-container
+      #       docker pull dockeruser7234/server-image
+      #       docker-compose up

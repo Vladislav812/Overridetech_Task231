@@ -1,14 +1,14 @@
 services:
   server:
     image: 'dockeruser7234/server-image'
-    container_name: 'dockeruser7234/server-container'
+    container_name: 'dockeruser7234-server-container'
     ports:
       - 8081:8080
     depends_on:
       - db
 #        condition: service_healthy
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://dockeruser7234/database-container:5432/Overridetech
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://dockeruser7234-database-container:5432/Overridetech
       - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
       - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
@@ -17,7 +17,7 @@ services:
       - dadata_secretKey=${dadata_secretKey}
   db:
     image: postgres:latest
-    container_name: 'dockeruser7234/database-container'
+    container_name: 'dockeruser7234-database-container'
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}

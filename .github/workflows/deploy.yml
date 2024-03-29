@@ -25,7 +25,7 @@ jobs:
           mvn clean package -B --file pom.xml -DskipTests=true
           cp ./target/task231-0.0.1-SNAPSHOT.jar ./src/main/docker
           cd ./src/main/docker
-          ls
+          ls -lh
           
       # - name: Build Docker Image of Server
       #   run: |

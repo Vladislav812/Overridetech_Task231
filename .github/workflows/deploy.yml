@@ -1,4 +1,4 @@
-# name: Build & Deploy
+name: Complete Build & Deploy on Remote Server
 
 on:
   push:
@@ -7,47 +7,52 @@ on:
 
 jobs:
   main_job:
-    name: Complete Build and Deploy
+    name: Build and Deploy
     runs-on: ubuntu-latest
     steps:
       - name: copy repository to runner
         uses: actions/checkout@v4
 
-      # - name: setup java JDK
-      # - uses: actions/setup-java@v4
-      #   with: 
-      #     java-version: '11'
-      #     distribution: 'temurin'
-      #     cache: 'maven'
+      - name: setup java JDK
+      - uses: actions/setup-java@v4
+        with: 
+          java-version: '11'
+          distribution: 'temurin'
+          cache: 'maven'
 
-      # - name: Build with Maven and copy jar to docker folder
-      #   run: |
-      #     mvn clean package -B --file pom.xml -DskipTests=true
-      #     cp ./target/task231-0.0.1-SNAPSHOT.jar ./src/main/docker
-      #     # cd ./src/main/docker
-      #     # ls
+      - name: Build with Maven and copy jar to docker folder
+        run: |
+          mvn clean package -B --file pom.xml -DskipTests=true
+          cp ./target/task231-0.0.1-SNAPSHOT.jar ./src/main/docker
+          # cd ./src/main/docker
+          # ls
           
       # # - name: Build Docker Image of Server
       # #   run: |
       # #     cd ./src/main/docker
       # #     docker image build -t server-image:latest .
       # #     docker images
+
+      # - name: Delete Old Server Image From DockerHub
+      #   run:
+      #     curl -X delete -u "${{ secrets.DOCKERHUB_USERNAME }}:${{ secrets.DOCKERHUB_TOKEN }}" https://index.docker.io/v1/repositories/${{ secrets.DOCKERHUB_USERNAME }}/server-image/
+
       
-      # - name: Login to DockerHub
-      #   uses: docker/login-action@v3.1.0
-      #   with:
-      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
-      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Login to DockerHub
+        uses: docker/login-action@v3.1.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
           
-      # - name: Set up Docker Buildx
-      #   uses: docker/setup-buildx-action@v3.2.0
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3.2.0
       
-      # - name: Server Build and Push to Dockerhub
-      #   uses: docker/build-push-action@v5.3.0
-      #   with:
-      #     file: ./src/main/docker/Dockerfile
-      #     push: true
-      #     tags: dockeruser7234/server-image
+      - name: Server Build and Push to Dockerhub
+        uses: docker/build-push-action@v5.3.0
+        with:
+          file: ./src/main/docker/Dockerfile
+          push: true
+          tags: dockeruser7234/server-image
 
       
       - name: Copy Starting Files
@@ -58,12 +63,10 @@ jobs:
           port: 22
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "./src/main/docker/.env,./src/main/docker/docker-compose.yaml"
-          target: "/home/vladislav/"
+          target: "/home/${{ secrets.SSH_USERNAME }}/"
           strip_components: 4
           overwrite: true
       
-
-        
       # - name: Ssh Connect
       #   uses: appleboy/ssh-action@v1.0.3
       #   with:

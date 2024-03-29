@@ -48,7 +48,7 @@ jobs:
       - name: Server Build and Push to Dockerhub
         uses: docker/build-push-action@v5.3.0
         with:
-          context: "{{defaultContext}}:./"
+          context: .
           file: ./src/main/docker/Dockerfile
           push: true
           tags: dockeruser7234/server-image

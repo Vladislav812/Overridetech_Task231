@@ -81,4 +81,4 @@ jobs:
             docker stop dockeruser7234/database-container
             docker rm dockeruser7234/database-container
             docker pull dockeruser7234/server-image
-            docker compose-up
+            docker-compose up

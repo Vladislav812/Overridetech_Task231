@@ -35,7 +35,7 @@ jobs:
 
       - name: Delete Old Server Image From DockerHub
         run:
-          curl -X delete -u "${{ secrets.DOCKERHUB_USERNAME }}:${{ secrets.DOCKERHUB_TOKEN }}" https://index.docker.io/v1/repositories/${{ secrets.DOCKERHUB_USERNAME }}/server-image/
+          curl -X delete -u "${{ secrets.DOCKERHUB_USERNAME }}:${{ secrets.DOCKERHUB_TOKEN }}" https://hub.docker.com/repository/docker/${{ secrets.DOCKERHUB_USERNAME }}/server-image/
 
       
       # - name: Login to DockerHub

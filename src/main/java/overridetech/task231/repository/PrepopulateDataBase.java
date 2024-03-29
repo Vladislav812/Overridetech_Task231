@@ -29,17 +29,18 @@ public class PrepopulateDataBase {
             roleRepository.save(dbRole);
         }
 
-        List<String> names = List.of("Name1", "Name2", "Name3", "Name4", "Psina Sutulaya");
-        List<Integer> ages = List.of(21, 22, 23, 24, 30);
-        List<String> emails = List.of("email1@gmail.com", "email2@gmail.com", "email3@gmail.com", "email4@gmail.com", "psina@mail.ru");
-        List<String> passwords = List.of("111", "222", "333", "444", "psina");
-        List<String> addresses = List.of("мск ленинский пр 88 ", "Москва кедрова 19 ", " спб Лиговский 245", "мск осипенко 22", "Санкт-Петербург невский 65");
+        List<String> names = List.of("Name1", "Name2", "Name3", "Name4", "Psina Sutulaya", "Name5");
+        List<Integer> ages = List.of(21, 22, 23, 24, 30, 44);
+        List<String> emails = List.of("email1@gmail.com", "email2@gmail.com", "email3@gmail.com", "email4@gmail.com", "psina@mail.ru", "email5@gmail.com");
+        List<String> passwords = List.of("111", "222", "333", "444", "psina", "555");
+        List<String> addresses = List.of("мск ленинский пр 88 ", "Москва кедрова 19 ", " спб Лиговский 245", "мск осипенко 22", "Санкт-Петербург невский 65", "Казан горьког 29");
         List<Set<Role>> currentRoles = List.of(
                 Set.of(new Role(1L), new Role(2L), new Role(3L), new Role(4L)),
                 Set.of(new Role(1L)),
                 Set.of(new Role(2L)),
                 Set.of(new Role(3L)),
-                Set.of(new Role(3L))
+                Set.of(new Role(3L)),
+                Set.of(new Role(2L))
         );
 
         for (int i = 0; i < names.size(); i++) {

@@ -55,7 +55,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "./src/main/docker/.env,./src/main/docker/docker-compose.yaml"
           target: "/home/vladislav/"
-          strip_components: 3
+          strip_components: 4
           overwrite: true
       
 

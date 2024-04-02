@@ -37,6 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/userpage").hasAnyRole("user", "admin")
                 .antMatchers("/start").hasRole("admin")
                 .antMatchers("/sellerpage").hasRole("seller")
+                .antMatchers("/prepop").permitAll()
                 .and().formLogin()
                 .successHandler(successUserHandler)
                 .and().logout();

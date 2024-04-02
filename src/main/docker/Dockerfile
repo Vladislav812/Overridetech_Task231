@@ -8,11 +8,9 @@ RUN mkdir -p /maindir
 WORKDIR /maindir
 COPY /pom.xml /maindir
 COPY /src /maindir/src
-RUN ls
 RUN mvn clean package -B --file ./pom.xml -DskipTests=true
+RUN ls
 
-
-#
-#FROM amazoncorretto:11
-#COPY ./target/*.jar application.jar
-#ENTRYPOINT ["java", "-jar", "application.jar"]
+FROM amazoncorretto:11
+COPY ./target/*.jar application.jar
+ENTRYPOINT ["java", "-jar", "application.jar"]

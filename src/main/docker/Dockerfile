@@ -12,6 +12,5 @@ RUN mvn clean package -B --file ./pom.xml -DskipTests=true
 
 
 FROM amazoncorretto:11
-RUN ls
-COPY /target/*.jar application.jar
+COPY --from=build /target/*.jar application.jar
 ENTRYPOINT ["java", "-jar", "application.jar"]

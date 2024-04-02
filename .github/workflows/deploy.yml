@@ -66,4 +66,6 @@ jobs:
             docker rm dockeruser7234-server-container
             docker rmi dockeruser7234/server-image
             docker pull dockeruser7234/server-image
+            docker stop dockeruser7234-database-container
+            docker rm dockeruser7234-database-container
             docker-compose up -d

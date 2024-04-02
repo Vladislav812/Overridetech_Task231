@@ -26,4 +26,6 @@ public interface UserService {
     public List<Role> getAllRoles();
 
     public JSONArray getNearestPostOffices(Long userId);
+
+    void prepopulateDB();
 }

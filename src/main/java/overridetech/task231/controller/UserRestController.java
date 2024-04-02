@@ -67,6 +67,4 @@ public class UserRestController {
         Long id = Long.parseLong(userId);
         return userService.getNearestPostOffices(id);
     }
-
-
 }

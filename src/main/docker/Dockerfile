@@ -3,7 +3,7 @@
 #COPY ${JAR_FILE} application.jar
 #ENTRYPOINT ["java", "-jar", "application.jar"]
 
-FROM maven:4.0.0-amazoncorretto-11 AS build
+FROM maven:3.9.6-amazoncorretto-11 AS build
 RUN mvn clean package -B --file pom.xml -DskipTests=true
 
 

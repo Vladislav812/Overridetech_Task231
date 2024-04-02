@@ -102,12 +102,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public void prepopulateDB() {
-//        List<String> roles = new ArrayList<>(List.of("ROLE_admin", "ROLE_user", "ROLE_seller", "ROLE_manager", "ROLE_moderator"));
-//        for (String role : roles) {
-//            Role dbRole = new Role();
-//            dbRole.setTitle(role);
-//            roleRepository.save(dbRole);
-//        }
+        List<String> roles = new ArrayList<>(List.of("ROLE_admin", "ROLE_user", "ROLE_seller", "ROLE_manager", "ROLE_moderator"));
+        for (String role : roles) {
+            Role dbRole = new Role();
+            dbRole.setTitle(role);
+            roleRepository.save(dbRole);
+        }
 
         List<String> names = List.of("Name1", "Name2", "Name3", "Name4", "Psina Sutulaya", "Name5");
         List<Integer> ages = List.of(21, 22, 23, 24, 30, 44);

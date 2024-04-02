@@ -5,6 +5,7 @@
 
 FROM maven:4.0.0-amazoncorretto-11 AS build
 RUN mvn clean package -B --file pom.xml -DskipTests=true
+RUN ls
 
 
 FROM amazoncorretto:11

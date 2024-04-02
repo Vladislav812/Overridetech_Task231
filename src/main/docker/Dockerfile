@@ -4,6 +4,7 @@
 #ENTRYPOINT ["java", "-jar", "application.jar"]
 
 FROM maven:3.9.6-amazoncorretto-11 AS build
+RUN ls
 RUN mvn clean package -B --file ./pom.xml -DskipTests=true
 
 

@@ -16,6 +16,7 @@ public class PrepopulateController {
     public String prepopulateController() {
         if (!prepopulated) {
             userService.prepopulateDB();
+            prepopulated = true;
             return "Prepopulation performed!";
         } else {
             return "Prepopulation has been already done!";

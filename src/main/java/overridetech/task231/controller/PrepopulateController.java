@@ -9,10 +9,12 @@ import overridetech.task231.service.UserService;
 public class PrepopulateController {
     @Autowired
     UserService userService;
+    boolean prepopulated;
 
     @GetMapping("/prepop")
     public void prepopulateController() {
-        userService.prepopulateDB();
+        if (!prepopulated) userService.prepopulateDB();
+        else return;
     }
 
 }

@@ -1,0 +1,155 @@
+databaseChangeLog:
+- changeSet:
+    id: 1712329651938-1
+    author: Bolotin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: products_pkey
+            name: id
+            type: BIGINT
+        - column:
+            name: description
+            type: TEXT
+        - column:
+            name: image
+            type: BYTEA
+        - column:
+            constraints:
+              nullable: false
+            name: price
+            type: FLOAT8
+        - column:
+            constraints:
+              nullable: false
+            name: quantity
+            type: INTEGER
+        - column:
+            name: title
+            type: VARCHAR(255)
+        - column:
+            name: seller_id
+            type: BIGINT
+        tableName: products
+- changeSet:
+    id: 1712329651938-2
+    author: Bolotin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: roles_pkey
+            name: id
+            type: BIGINT
+        - column:
+            name: title
+            type: VARCHAR(255)
+        tableName: roles
+- changeSet:
+    id: 1712329651938-3
+    author: Bolotin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: users_pkey
+            name: id
+            type: BIGINT
+        - column:
+            name: address
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: age
+            type: INTEGER
+        - column:
+            name: email
+            type: VARCHAR(255)
+        - column:
+            name: name
+            type: VARCHAR(255)
+        - column:
+            name: password
+            type: VARCHAR(255)
+        tableName: users
+- changeSet:
+    id: 1712329651938-4
+    author: Bolotin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: users_current_roles_pkey
+            name: user_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: users_current_roles_pkey
+            name: current_roles_id
+            type: BIGINT
+        tableName: users_current_roles
+- changeSet:
+    id: 1712329651938-5
+    author: Bolotin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: current_roles_id
+        baseTableName: users_current_roles
+        constraintName: fk3avb6q06gol6fnnqwlhea5vlv
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: roles
+        validate: true
+- changeSet:
+    id: 1712329651938-6
+    author: Bolotin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: seller_id
+        baseTableName: products
+        constraintName: fkbgw3lyxhsml3kfqnfr45o0vbj
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: users
+        validate: true
+- changeSet:
+    id: 1712329651938-7
+    author: Bolotin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: user_id
+        baseTableName: users_current_roles
+        constraintName: fkk7eys84kbtkwm2edxe0rp84jj
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: users
+        validate: true
+

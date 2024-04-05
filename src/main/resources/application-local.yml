@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driverClassName: 'org.postgresql.Driver'
+    url: 'jdbc:postgresql://localhost:5433/Overridetech'
+    username: 'postgres'
+    password: 'admin'
+  jpa:
+    hibernate:
+      ddl-auto: none
+      show-sql: true
+  liquibase:
+    enabled: true
+    change-log: classpath:liquibase-outputChangeLog.yml
+dadata:
+  apiToken: ${dadata_APIKey}
+  secretKey: ${dadata_secretKey}

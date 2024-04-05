@@ -10,16 +10,14 @@ import overridetech.task231.service.UserService;
 public class PrepopulateController {
     @Autowired
     UserService userService;
-    boolean prepopulated;
 
     @GetMapping("/prepop")
     public String prepopulateController() {
-        if (!prepopulated) {
+        if (userService.findAllByOrderByIdAsc().isEmpty()) {
             userService.prepopulateDB();
-            prepopulated = true;
             return "Prepopulation performed!";
         } else {
-            return "Prepopulation has been already done!";
+            return "Prepopulation has been already done! (Database is not empty!)";
         }
     }
 

@@ -17,6 +17,10 @@
 ##dadata:
 ##  apiToken: ${APIKey}
 ##  secretKey: ${secretKey}
+spring:
+  liquibase:
+    enabled: true
+    change-log: classpath:liquibase-outputChangeLog.yml
 dadata:
   apiToken: ${dadata_APIKey}
   secretKey: ${dadata_secretKey}

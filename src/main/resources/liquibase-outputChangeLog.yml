@@ -156,7 +156,7 @@ databaseChangeLog:
       id: 1712329651938-8
       author: Bolotin (generated)
       changes:
-          - addColumn
+          - addColumn:
           - tableName: users
             columns:
                 - column:

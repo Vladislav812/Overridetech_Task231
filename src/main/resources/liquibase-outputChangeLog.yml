@@ -162,12 +162,12 @@ databaseChangeLog:
                     - column:
                           name: testliquibase
                           type: VARCHAR(255)
-#- changeSet:
-#      id: 1712329651938-9
-#      author: Bolotin (generated)
-#      changes:
-#          - dropColumn:
-#                tableName: users
-#                columns:
-#                - column:
-#                    name: testliquibase
+- changeSet:
+      id: 1712329651938-9
+      author: Bolotin (generated)
+      changes:
+          - dropColumn:
+                tableName: users
+                columns:
+                - column:
+                    name: testliquibase

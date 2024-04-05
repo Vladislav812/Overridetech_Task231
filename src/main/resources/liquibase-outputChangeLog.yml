@@ -153,12 +153,12 @@ databaseChangeLog:
         referencedTableName: users
         validate: true
 - changeSet:
-      id: 1712329651938-8
-      author: Bolotin (generated)
-      changes:
-          - addColumn:
-          - tableName: users
+    id: 1712329651938-8
+    author: Bolotin (generated)
+    changes:
+        - addColumn:
+            tableName: users
             columns:
                 - column:
-                      name: testliquibase
-                      type: VARCHAR(255)
+                    name: testliquibase
+                    type: VARCHAR(255)
